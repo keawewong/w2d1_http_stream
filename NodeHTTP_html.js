@@ -1,4 +1,4 @@
-function getAndPrintHTML(host, path) {
+function getHTML(host, path, callback) {
 
   // require the https module
   var https = require('https');
@@ -20,7 +20,7 @@ function getAndPrintHTML(host, path) {
     });
 
     response.on('end', function() {
-      console.log(`Display whole data stream. Length:, ${myData.length}\n${printHTML(myData)}\n`);
+      console.log(`Display whole data stream. Length:, ${myData.length}\n${callback(myData)}\n`);
       console.log('Response stream complete.');
     });
 
@@ -32,4 +32,4 @@ function printHTML(html) {
   console.log(html);
 }
 
-getAndPrintHTML('sytantris.github.io', '/http-examples/step1.html');
+getHTML('sytantris.github.io', '/http-examples/step1.html', printHTML);
